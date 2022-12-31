@@ -34,6 +34,10 @@ public class Respawn : State
        
     }
 
+    /*TODO: create a spawn location Slender can go to if player gets on unwalkable navmesh spot.
+     * Game will freeze and try to spawn slender if this happens!
+     * 
+     */
     private void SpawnAroundPlayer()
     {
         Vector3 randomPos;
