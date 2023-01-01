@@ -5,7 +5,7 @@ This project is a game called Spooky Man that is inspired by the original Slende
 
 
 # How does the Spooky Man ai work?
-The ai is composed of 5 different states, respawn, stalk, watch, chase, flee, and attack
+The Spooky Man ai is composed of 6 different states: respawn, stalk, watch, chase, flee, and attack.
 
 ## Respawn
 - The Spooky Man will respawns around the player. Not too close, but not too far.
