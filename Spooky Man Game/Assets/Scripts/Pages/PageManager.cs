@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,57 +6,44 @@ using UnityEngine.Events;
 
 public class PageManager : MonoBehaviour
 {
-    [SerializeField] List<GameObject> mPagesRemaining;
-    [SerializeField] AudioSource mCollectPage;
-    [SerializeField] AudioSource mCollectedAllPages;
-    [SerializeField] UnityEvent OnCompleteEvent;
-    [SerializeField] UnityEvent SpawnSlender;
-    public int mPagesCollected;
+    [SerializeField] List<Page> mPages;
+    private List<Page> mPagesRemaining;
+    private bool mHasSpawnedSlenderMan;
+    public event EventHandler OnPagePickUp;
 
-
-    // Start is called before the first frame update
+    public delegate void PageCollected();
+    public event PageCollected OnPageCollectionEvent;
+    public event PageCollected OnCollectedAllPagesEvent;
     private void Awake()
     {
-        mPagesCollected = 0;
+        mHasSpawnedSlenderMan = false;
+        mPagesRemaining = new List<Page>(mPages);
+
+        foreach (Page page in mPagesRemaining)
+            page.OnPagePickUp += HandlePagePickUp;
     }
     
-    public void HandlePagePickUp(GameObject obj)
+    public void HandlePagePickUp(Page page)
     {
-        if(obj.CompareTag("Page"))
+        Debug.Log("page manager handlepagepickup was called!");
+     
+        if(!page.mHasBeenCollected)
         {
-            SpawnSlender.Invoke();
-
-            if (mPagesRemaining.Remove(obj))
-                ++mPagesCollected;
-
-           // if(obj.GetComponent<Page>())
-                obj.GetComponent<Page>()?.CollectPage();
-
-            if (mPagesRemaining.Count == 0)
-                OnCompleteEvent.Invoke();
+            RemovePageFromList(page);
+            OnPageCollectionEvent?.Invoke();
         }
-       
+        Debug.Log(mPagesRemaining.Count + " pages remaining!");
+        if (mPagesRemaining.Count == 0)
+        {
+            OnCollectedAllPagesEvent?.Invoke();
+            Debug.Log("collected all pages!");
+        }
+        page.mHasBeenCollected = true;
+           // collectedAllPages?.Invoke();
     }
 
-    public void RemovePageFromList(GameObject page)
+    private void RemovePageFromList(Page page)
     {
-        if(!page.CompareTag("Page"))
-        {
-            Debug.Log("Attempted to remove a non-page game object from page list!");
-            return;
-        }
-        /*
-        for (int i = 0; i < mPages.Count; i++)
-        {
-            if (page == mPages[i])
-            {
-                Debug.Log("Removed page " + mPages[i] + " from the list!");
-                mPages.RemoveAt(i);
-                i = mPages.Count;
-                removed = true;
-            }
-        }*/
-
-       
+        mPagesRemaining.Remove(page);
     }
 }

@@ -6,6 +6,8 @@ using System;
 public class Page : InteractableObject
 {
     public bool mHasBeenCollected = false;
+
+    public event Action<Page> OnPagePickUp;
     public void Update()
     {
         if (mHasBeenCollected)
@@ -19,9 +21,11 @@ public class Page : InteractableObject
         mHasBeenCollected = true;    
     }
     
-    public override void HandlePickUp()
+    public override void OnPickUp()
     {
-        Debug.Log("Page Handlepick up!");
+        Debug.Log("Page OnPickUp was called!");
+        PlayPickUpAudio();
+        OnPagePickUp?.Invoke(this);
     }
   
     private void OnTriggerEnter(Collider other)

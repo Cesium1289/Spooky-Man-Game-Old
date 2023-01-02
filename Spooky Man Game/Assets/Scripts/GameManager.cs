@@ -6,11 +6,23 @@ public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
     GameObject mDirectionalLight;
+    AudioSource mAudioSource;
+
+    private void Start()
+    {
+        PageManager manager = FindObjectOfType<PageManager>();
+        manager.OnCollectedAllPagesEvent += PlayVictorySound;
+        mAudioSource = GetComponent<AudioSource>();
+    }
     void Awake()
     {
-        SetupDirectionalLight();
+        //SetupDirectionalLight();
     }
 
+    private void PlayVictorySound()
+    {
+        mAudioSource.Play();
+    }
 
     private void SetupDirectionalLight()
     {
@@ -30,5 +42,4 @@ public class GameManager : MonoBehaviour
         GameObject slender = new GameObject("Slender");
         Slender sl = slender.AddComponent<Slender>();
     }
-   
 }
