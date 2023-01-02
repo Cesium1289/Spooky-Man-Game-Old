@@ -17,18 +17,15 @@ public class Hand : MonoBehaviour
     private float gripCurrent;
     private float triggerCurrent;
     public float speed;
-    public Canvas mUi;
-    private PageManager mPageManager;
-    private Text mUiPageCountText;
+    PageCountDisplay mPageCountDisplay;
 
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 300;
         mHeldObjects = new List<GameObject>();
-        animator = GetComponent<Animator>();
-        mPageManager = FindObjectOfType<PageManager>();
-        mUiPageCountText = mUi.GetComponentInChildren<Text>();
+        animator = GetComponent<Animator>();     
+        mPageCountDisplay = FindObjectOfType<PageCountDisplay>();
     }
 
     // Update is called once per frame
@@ -59,30 +56,14 @@ public class Hand : MonoBehaviour
         if (triggerCurrent != triggerTarget)
         {
             if (triggerCurrent > 0.1f)
-                ToggleUI();
+                mPageCountDisplay.ToggleUi();
             else
-                DisableUI();
+                mPageCountDisplay.DisableUi();
 
-            triggerCurrent = Mathf.MoveTowards(triggerCurrent, triggerTarget, Time.deltaTime * speed);
+                triggerCurrent = Mathf.MoveTowards(triggerCurrent, triggerTarget, Time.deltaTime * speed);
             animator.SetFloat("Trigger", triggerCurrent);
         }
     }
-    public void ToggleUI()
-    {
-        if (!mUi)
-            return;
-        // int numPages = mPageManager.mPagesCollected;
-        int numPages = 2;
-        mUiPageCountText.text = numPages + "/8 Pages Found";
-        mUi.enabled = true;
-    }
-    public void DisableUI()
-    {
-        if (!mUi)
-            return;
-        mUi.enabled = false;
-    }
-
     //checks whether or not a vr hand is holding an object
     [Obsolete]
     void Grabbing()
@@ -94,20 +75,8 @@ public class Hand : MonoBehaviour
             {
                 mHeldObjects.Add(interactor.selectTarget.gameObject);
                 Debug.Log("Added " + interactor.selectTarget.gameObject.tag + " to the list");
-                interactor.selectTarget?.GetComponent<InteractableObject>().HandlePickUp();
-                /*
-                mHeldObjects.Add(interactor.selectTarget.gameObject);
-                Debug.Log("Added " + interactor.selectTarget.gameObject.tag + " to the list");
-                interactor.selectTarget.GetComponent<InteractableObject>().HandlePickUp();
-                if (interactor.selectTarget.CompareTag("Page"))
-                    //mPageManager.HandlePagePickUp(interactor.selectTarget.gameObject);
-                Debug.Log("has it " + interactor.selectTarget.GetComponent<InteractableObject>());
-                if (interactor.selectTarget.GetComponent<InteractableObject>())
-                    interactor.selectTarget.gameObject.GetComponent<InteractableObject>().PlayPickUpAudio();
-                else
-                    Debug.Log("no sound thing");*/
+                interactor.selectTarget?.GetComponent<InteractableObject>().OnPickUp();             
             }
-
         }
         else //interactor does not have a target
         {

@@ -22,14 +22,16 @@ public class InteractableObject : MonoBehaviour
         shouldPlayPickUpSound = true;
     }
 
-    virtual public void HandlePickUp()
+    virtual public void OnPickUp()
     {
-        Debug.Log("Virtual Handlepick up!");
+        PlayPickUpAudio();
+        Debug.Log("Virtual OnPickUp!");
     }
     public void PlayPickUpAudio()
     {
-        // mAudioSource.Play();
-        Debug.Log("f in the chat");
+        Debug.Log("PLAY SOUNDS!");
+        mAudioSource.PlayOneShot(pickUpNoise);
+        /*
         if (pickUpNoise && shouldPlayPickUpSound)
         {
             Debug.Log("we should play some pick up audio!");
@@ -37,7 +39,7 @@ public class InteractableObject : MonoBehaviour
                 mAudioSource.Stop();
             mAudioSource.PlayOneShot(pickUpNoise);
             shouldPlayPickUpSound = false;
-        }
-       
+        }*/
+
     }
 }
