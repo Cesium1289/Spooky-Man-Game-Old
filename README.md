@@ -8,7 +8,7 @@ This project is a game called Spooky Man that is inspired by the original Slende
 The Spooky Man ai is composed of 6 different states: respawn, stalk, watch, chase, flee, and attack.
 
 ## Respawn
-- The Spooky Man will respawns around the player. Not too close, but not too far.
+- The Spooky Man will spawn around the player. Not too close, but not too far.
 
 ## Stalk
 - When The Spooky Man is not close to the player, he will stalk them and try to get to their position.
@@ -16,16 +16,20 @@ The Spooky Man ai is composed of 6 different states: respawn, stalk, watch, chas
 - When The Spooky Man is looked at by the player from afar, he will stop and enter into his watch state.
 
 ## Watch
-- The Spooky Man will stop and stare at the player. If the player looks at him for too long or gets too close, he will change to his chase state.
+- The Spooky Man will stop and stare at the player. 
+- If the player looks at him for too long or gets too close, he will change to his chase state.
 - Looking away will cause him to enter his stalk state.
 
 ## Chase
-- When the player gets to close to The Spooky Man, he will puruse the player at higher speeds in an attempt to catch him.
-- If the player manages to out run his pursuit time, he will respawn
-- If the player is looking at The Spooky Man when his pursuit timer expires, he will enter into his flee state.
+- When the player gets close to The Spooky Man, he will puruse the player at higher speeds in an attempt to catch him.
+- If the player manages to out run his pursuit time, he will enter into his respawn state
+- If the player is looking at The Spooky Man when his pursuit timer expires, he will enter his flee state.
 - If The Spooky Man gets close to the player, this is when he will enter his attack state.
 
 ## Flee
  - The Spooky Man runs away back to the last point he spawned.
  - Throwing objects at The Spooky Man will cause him to flee.
+ 
+ ## Attack
+ - When the player gets too close to The Spooky Man, this is when he attacks. After attacking the player, the scene will be reset and the player will lose all page progress.
 
