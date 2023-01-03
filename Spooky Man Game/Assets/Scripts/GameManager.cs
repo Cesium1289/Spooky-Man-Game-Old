@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
 
     public void SpawnSlenderMan()
     {
-        GameObject slender = new GameObject("Slender");
-        Slender sl = slender.AddComponent<Slender>();
+      
     }
 }
