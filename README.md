@@ -1,7 +1,10 @@
 # Spooky-Man-Game
 
 ## What is this project?
-This project is a game called Spooky Man that is inspired by the original Slender Man game created using the Unity game engine. The goal of Spooky Man is to find 8 pages that are scattered around points of interest in a dark errie forest. While the player tries to gather all 8 pages, Spooky Man will attempt to stop the player and they must hit him with throwable objects or outrun him to stop his relentless pursuit. The player wins the game when they successfully gather all 8 pages and avoid getting caught by Spooky Man.
+This project is a game called Spooky Man that is inspired by the original Slender Man game created using the Unity game engine. The goal of Spooky Man is to find 8 pages that are scattered around points of interest in a dark errie forest. While the player tries to gather all 8 pages, Spooky Man will attempt to stop the player and they must hit him with throwable objects or outrun him to stop his relentless pursuit. The player wins the game when they successfully gather all 8 pages and avoid getting caught by Spooky Man. Here is a link to video demo of this project from an earlier build. https://youtu.be/qTZw--nKSII. The game functions the same, but there have been some small tweaks to the ai and the map.
+
+
+
 
 
 # How does the Spooky Man ai work?
