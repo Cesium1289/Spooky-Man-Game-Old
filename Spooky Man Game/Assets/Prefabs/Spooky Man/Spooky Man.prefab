@@ -1822,6 +1822,7 @@ GameObject:
   - component: {fileID: 8394727314607371127}
   - component: {fileID: -246156137173404345}
   - component: {fileID: -5073395794101826067}
+  - component: {fileID: 8831059076765957950}
   m_Layer: 0
   m_Name: Spooky Man
   m_TagString: Slender
@@ -2314,21 +2315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1c32e2b0a5713468a566108aaa07eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAtPlacementLocation: 0
   player: {fileID: 0}
-  runAwayTarget: {fileID: 0}
-  spawnPoint: {fileID: 0}
-  runningAwayTimer: 0
-  pursuitTimer: 0
-  distanceFromPlayer: 0
-  inPursuit: 0
-  isStalking: 0
-  beingLookedAt: 0
-  runningAway: 0
-  audioScream: {fileID: 0}
-  audioLookAt: {fileID: 0}
-  audioAttack: {fileID: 0}
-  audioSpawn: {fileID: 0}
   isAttacking: 0
 --- !u!114 &-5073395794101826067
 MonoBehaviour:
@@ -2346,6 +2333,24 @@ MonoBehaviour:
   audioLookAt: {fileID: 8394727314488948115}
   audioAttack: {fileID: 8394727314331258581}
   audioSpawn: {fileID: 8394727314607371127}
+--- !u!114 &8831059076765957950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5539162224900805489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7904d7a9aabf4684ebf9b660212305f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stalkingTimer: 0
+  chaseTimer: 0
+  fleeTimer: 0
+  beingLookedAtTimer: 0
+  attackTimer: 0
+  spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &5568070878571518489
 GameObject:
   m_ObjectHideFlags: 0

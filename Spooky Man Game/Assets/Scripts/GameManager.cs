@@ -7,11 +7,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     GameObject mDirectionalLight;
     AudioSource mAudioSource;
-
+    bool mHasSpawnedSlender = false;
+    PageManager mPageManger;
+    [SerializeField] GameObject mSpookyMan;
     private void Start()
     {
-        PageManager manager = FindObjectOfType<PageManager>();
-        manager.OnCollectedAllPagesEvent += PlayVictorySound;
+        mPageManger = FindObjectOfType<PageManager>();
+        mPageManger.OnCollectedAllPagesEvent += PlayVictorySound;
+        mPageManger.OnPageCollectionEvent += SpawnSpookyMan;
         mAudioSource = GetComponent<AudioSource>();
     }
     void Awake()
@@ -37,8 +40,12 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void SpawnSlenderMan()
+    public void SpawnSpookyMan()
     {
-      
+        if(!mHasSpawnedSlender)
+        {
+            Instantiate(mSpookyMan);
+            mHasSpawnedSlender = true;
+        }
     }
 }

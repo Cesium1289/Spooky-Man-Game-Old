@@ -30,7 +30,8 @@ public class SpookyMan : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();   
         audio = GetComponent<SpookyManAudio>();
         utility = GetComponent<SpookyManUtility>();
-        currentState = new Respawn(this.gameObject, agent, animator, player, utility, audio);       
+        currentState = new Respawn(this.gameObject, agent, animator, player, utility, audio);
+        audio.PlaySlenderSpawnSound();
     }
     void Update()
     {

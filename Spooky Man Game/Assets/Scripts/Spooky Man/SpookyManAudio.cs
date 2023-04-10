@@ -9,7 +9,10 @@ public class SpookyManAudio : MonoBehaviour
     [SerializeField] private AudioSource audioAttack;
     [SerializeField] private AudioSource audioSpawn;
 
-   
+   public void PlaySlenderSpawnSound()
+    {
+        audioSpawn.PlayOneShot(audioSpawn.clip);
+    }
     public void PlaySlenderLookAtSound()
     {
         audioLookAt.PlayOneShot(audioLookAt.clip);

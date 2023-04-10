@@ -8,6 +8,9 @@ public class Page : InteractableObject
     public bool mHasBeenCollected = false;
 
     public event Action<Page> OnPagePickUp;
+
+   
+
     public void Update()
     {
         if (mHasBeenCollected)

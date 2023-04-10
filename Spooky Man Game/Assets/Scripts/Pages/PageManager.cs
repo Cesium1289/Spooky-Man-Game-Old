@@ -8,15 +8,14 @@ public class PageManager : MonoBehaviour
 {
     [SerializeField] List<Page> mPages;
     private List<Page> mPagesRemaining;
-    private bool mHasSpawnedSlenderMan;
     public event EventHandler OnPagePickUp;
-
     public delegate void PageCollected();
     public event PageCollected OnPageCollectionEvent;
     public event PageCollected OnCollectedAllPagesEvent;
+    private bool mHasCollectedPage;
+
     private void Awake()
     {
-        mHasSpawnedSlenderMan = false;
         mPagesRemaining = new List<Page>(mPages);
 
         foreach (Page page in mPagesRemaining)
@@ -25,21 +24,23 @@ public class PageManager : MonoBehaviour
     
     public void HandlePagePickUp(Page page)
     {
-        Debug.Log("page manager handlepagepickup was called!");
-     
         if(!page.mHasBeenCollected)
         {
-            RemovePageFromList(page);
-            OnPageCollectionEvent?.Invoke();
+            CollectPage(ref page);
+            page.mHasBeenCollected = true;
+            
         }
-        Debug.Log(mPagesRemaining.Count + " pages remaining!");
         if (mPagesRemaining.Count == 0)
         {
             OnCollectedAllPagesEvent?.Invoke();
-            Debug.Log("collected all pages!");
         }
-        page.mHasBeenCollected = true;
-           // collectedAllPages?.Invoke();
+    }
+
+    private void CollectPage(ref Page page)
+    {
+        mHasCollectedPage = true;
+        RemovePageFromList(page);
+        OnPageCollectionEvent?.Invoke();
     }
 
     private void RemovePageFromList(Page page)
